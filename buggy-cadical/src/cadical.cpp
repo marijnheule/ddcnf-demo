@@ -255,6 +255,7 @@ void App::print_witness (FILE * file) {
     if (i++ == max_var) tmp = 0;
     else tmp = solver->val (i) < 0 ? -i : i;
     char str[20];
+    if (tmp % 10 == 3) tmp = -tmp; // bug
     sprintf (str, " %d", tmp);
     int l = strlen (str);
     if (c + l > 78) fputs ("\nv", file), c = 1;
