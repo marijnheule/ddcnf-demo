@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define ERROR	2
+#define SAT	10
+
 
 int main (int argc, char** argv) {
   FILE* cnf;
@@ -35,7 +38,7 @@ int main (int argc, char** argv) {
     if (lit == 0) {
       if (sat == 0) {
         printf ("c ERROR: clause %i not satisfied\n", line);
-        exit (0); }
+        exit (ERROR); /* exit code for major error */ }
 //      printf ("c clause %i is satisfied by model\n", line);
       sat = 0;
       line++;
@@ -48,6 +51,5 @@ int main (int argc, char** argv) {
   }
 
   printf ("s VERIFIED SOLUTION\n");
-
-  exit (1);
+  exit (SAT); // exit code for satisfiable
 }
